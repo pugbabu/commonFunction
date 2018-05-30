@@ -366,8 +366,6 @@ function addClass (element, className) {
   return element
 }
 
-// 测试下分支
-
  //  CSS修改滚动条样式：
  //  ::-webkit-scrollbar {
  // 	width: 10px;
