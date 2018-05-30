@@ -319,6 +319,53 @@
    return currentdate;
  }
  
+ /**
+* rem自适应布局计算
+* @param {string} document window
+*/
+function rem(doc, win) {
+  var docEl = doc.documentElement
+  var resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize'
+  var recalc = function () {
+    var clientWidth = docEl.clientWidth
+    if (!clientWidth) return
+    docEl.style.fontSize = 100 * (clientWidth / 640) + 'px'
+  }
+  if (!doc.addEventListener) return
+  win.addEventListener(resizeEvt, recalc, false)
+  doc.addEventListener('DOMContentLoaded', recalc, false)
+}
+
+//阻止微信长按出现复制和在浏览器打开的菜单
+function preventContextmenu() {
+  document.oncontextmenu = function(e) {
+    e.preventDefault()
+  }
+}
+
+// 函数节流
+function throttle(fn, context) {
+  clearTimeout(fn.timeoutId)
+  fn.timeoutId = setTimeout(() => {
+    fn.call(context)
+  }, 500);
+}
+
+// 移除class
+function removeClass (element, className) {
+  if (element.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))) {
+    var reg = new RegExp('(\\s|^)' + className + '(\\s|$)')
+    element.className = element.className.replace(reg, ' ')
+  }
+  return element
+}
+
+// 添加class
+function addClass (element, className) {
+  if (!element.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))) element.className += ' ' + className
+  return element
+}
+ 
  //  CSS修改滚动条样式：
  //  ::-webkit-scrollbar {
  // 	width: 10px;
