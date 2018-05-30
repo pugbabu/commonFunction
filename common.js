@@ -365,7 +365,9 @@ function addClass (element, className) {
   if (!element.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))) element.className += ' ' + className
   return element
 }
- 
+
+// 测试下分支
+
  //  CSS修改滚动条样式：
  //  ::-webkit-scrollbar {
  // 	width: 10px;
