@@ -366,6 +366,52 @@ function addClass (element, className) {
   return element
 }
 
+ /**
+* 秒杀功能
+* @param {string} endTime(2018-06-09 12:09:03)
+* @return {string} d h m s
+*/
+function secKill(time) {
+  let nowTime = new Date().getTime()
+  let endTime = new Date(time).getTime()
+  if (endTime <= nowTime) return '秒杀活动已结束'
+  let nTime = parseInt((endTime - nowTime) / 1000)
+  let timer =  setInterval(() => {
+    timeCutDown(nTime)
+    nTime--
+  }, 1000)
+  if (timer <= 0) {
+    clearInterval(timer)
+  }
+  function timeCutDown(t) {
+    let str = ''
+    let day = Math.floor(t / (24 * 60 * 60))
+    let hour = Math.floor((t - day * 24 * 60 * 60) / 3600)
+    let minute = Math.floor((t - day * 24 * 60 * 60 - hour * 3600) / 60)
+    var second = Math.floor(t - day * 24 * 60 * 60 - hour * 3600 - minute * 60)
+    hour = addZero(hour)
+    minute = addZero(minute)
+    second = addZero(second)
+    function addZero(param) {
+      if (param >= 10) {
+        return param
+      } else if (param > 0){
+        return '0' + param
+      } else {
+        return 0
+      }
+    }
+    str = `${day}天:${hour}时:${minute}分:${second}秒`
+    console.log(str)
+  }
+
+
+}
+
+
+
+
+
  //  CSS修改滚动条样式：
  //  ::-webkit-scrollbar {
  // 	width: 10px;
