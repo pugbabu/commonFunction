@@ -457,10 +457,30 @@
      str = `${day}天:${hour}时:${minute}分:${second}秒`
      console.log(str)
    }
-
-
  }
-
+/**
+ * @description 检测密码强度
+ */
+function checkPwdLevel(str) {
+  if (Object.prototype.toString.call(str) !== '[object String]') return false
+  let level = 0
+  if (str.length < 6) {// 密码长度小于6位
+    return level
+  }
+  if (/[0-9]/.test(str)) {// 密码包含数字
+    level++
+  }
+  if (/[a-z]/.test(str)) {// 包含小写字母
+    level++
+  }
+  if (/[A-Z]/.test(str)) {// 包含大写字母
+    level++
+  }
+  if (/[\.|-|_]/.test(str)) {// 包含特殊字符
+    level++
+  }
+  return level
+}
 
 
 
