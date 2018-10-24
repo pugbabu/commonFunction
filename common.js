@@ -499,3 +499,19 @@ function checkPwdLevel(str) {
  // 	background-image: -webkit-gradient(linear, 40% 0%, 75% 84%, from(rgb(77, 156, 65)), color-stop(0.6, rgb(84, 222, 93)), to(rgb(25, 145, 29)));
  // 	border-radius: 10px;
  // }
+ 
+ /**
+ * @description 深拷贝实现
+ */
+function copy(obj) {
+  var objVal = obj instanceof Array ? [] : {};
+  for (var item in obj) {
+    let val = obj[item]
+    if (typeof val === 'object') {
+      objVal[item] = copy(val)
+    } else {
+      objVal[item] = val;
+    }
+  }
+  return objVal
+}
